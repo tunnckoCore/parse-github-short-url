@@ -17,7 +17,28 @@
     "type": "git",
     "url": "git://github.com/tunnckoCore/parse-github-short-url.git"
   },
-  "keywords": [],
+  "keywords": [
+    "branch",
+    "gh",
+    "github",
+    "object",
+    "parse",
+    "regex",
+    "regexps",
+    "release",
+    "repo",
+    "repo-util",
+    "repo-utils",
+    "repos",
+    "short",
+    "shorthand",
+    "tag",
+    "tags",
+    "url",
+    "urls",
+    "util",
+    "utils"
+  ],
   "license": {
     "type": "MIT",
     "url": "https://github.com/tunnckoCore/parse-github-short-url/blob/master/license.md"
