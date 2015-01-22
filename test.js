@@ -17,6 +17,14 @@ describe('parse-github-short-url:', function() {
       done()
     });
 
+    it('Error when empty string given', function(done) {
+      function fixture() {
+        parseUrl('')
+      }
+      assert.throws(fixture, Error);
+      done();
+    });
+
     it('TypeError when first argument not String given', function(done) {
       function fixture() {
         parseUrl({})
@@ -25,6 +33,7 @@ describe('parse-github-short-url:', function() {
       done();
     });
   });
+
   describe('should return object with empty fields for missing properties', function(done) {
     it('when string not contain possible pattern', function(done) {
       var actual = parseUrl('some string');
