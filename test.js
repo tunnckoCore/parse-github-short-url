@@ -17,7 +17,7 @@ describe('parse-github-short-url:', function() {
       done()
     });
 
-    it('TypeError when first argument not Sting given', function(done) {
+    it('TypeError when first argument not String given', function(done) {
       function fixture() {
         parseUrl({})
       }
