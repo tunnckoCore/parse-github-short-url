@@ -8,7 +8,6 @@
 'use strict';
 
 var regex = require('github-short-url-regex');
-var typeOf = require('kind-of');
 
 /**
  * Parse github short url to object
@@ -40,7 +39,7 @@ module.exports = function parseGithubShortUrl(str, opts) {
     throw new Error('parse-github-short-url: should have at least 1 arguments');
   }
 
-  if (typeOf(str) !== 'string') {
+  if (typeof str !== 'string') {
     throw new TypeError('parse-github-short-url: expect `str` be string');
   }
 
