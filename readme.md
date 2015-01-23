@@ -19,9 +19,9 @@ npm test
 ### [.parseGithubShortUrl](./index.js#L38)
 > Parse github short url to object
 
-* `<str>` **{String}** string to parse for `user/repo#branch`  
-* `[opts]` **{Object}** options are passed to [github-short-url-regex][github-short-url-regex]  
-* `returns` **{Object}**  
+- `<str>` **{String}** string to parse for `user/repo#branch`  
+- `[opts]` **{Object}** options are passed to [github-short-url-regex][github-short-url-regex]  
+- `returns` **{Object}**  
 
 **Example:**
 
