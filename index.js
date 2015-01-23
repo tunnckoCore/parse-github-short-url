@@ -10,6 +10,31 @@
 var regex = require('github-short-url-regex');
 var typeOf = require('kind-of');
 
+/**
+ * Parse github short url to object
+ *
+ * **Example:**
+ *
+ * ```js
+ * var parseGithubShortUrl = require('parse-github-short-url');
+ * parseGithubShortUrl('tunnckoCore/glob2fp#master');
+ * //=> {
+ * //  user: 'tunnckoCore',
+ * //  username: 'tunnckoCore',
+ * //  org: 'tunnckoCore',
+ * //  organization: 'tunnckoCore',
+ * //  repo: 'glob2fp',
+ * //  repository: 'glob2fp',
+ * //  branch: 'master'
+ * //};
+ * ```
+ *
+ * @name parseGithubShortUrl
+ * @param  {String} `<str>`
+ * @param  {Object} `[opts]`
+ * @return {Object}
+ * @api public
+ */
 module.exports = function parseGithubShortUrl(str, opts) {
   if (!str) {
     throw new Error('parse-github-short-url: should have at least 1 arguments');
