@@ -1,12 +1,16 @@
 ## [![npm][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
 
-> Parse a string (github shorthand url) into an object with `user`/`username`, `repo`/`repository`, `branch` using the `github-short-url-regex`
+> Parse a string (github shorthand url) into an object with `user`/`username`, `repo`/`repository`, `branch` using the [github-short-url-regex][github-short-url-regex]
 
 ## Install
 ```bash
 npm install parse-github-short-url
 npm test
 ```
+
+## Related
+- [github-short-url-regex][github-short-url-regex]
+- [parse-github-short-urls][parse-github-short-urls]
 
 
 ## API
@@ -78,3 +82,4 @@ Released under the [`MIT`][license-url] license.
 _Powered and automated by [kdf](https://github.com/tunnckoCore), January 22, 2015_
 
 [github-short-url-regex]: https://github.com/tunnckoCore/github-short-url-regex
+[parse-github-short-urls]: https://github.com/tunnckoCore/parse-github-short-urls
