@@ -82,4 +82,5 @@ Released under the [`MIT`][license-url] license.
 _Powered and automated by [kdf](https://github.com/tunnckoCore), January 22, 2015_
 
 [github-short-url-regex]: https://github.com/tunnckoCore/github-short-url-regex
+[parse-github-short-url]: https://github.com/tunnckoCore/parse-github-short-url
 [parse-github-short-urls]: https://github.com/tunnckoCore/parse-github-short-urls
