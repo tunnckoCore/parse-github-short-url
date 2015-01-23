@@ -1,5 +1,9 @@
 
 
+## v1.0.1 / January 23, 2015
+- Release v1.0.1
+- remove `kind-of`
+
 ## v1.0.0 / January 23, 2015
 - Release v1.0.0
 - add related projects
