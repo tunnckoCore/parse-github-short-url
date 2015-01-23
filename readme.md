@@ -16,7 +16,7 @@ npm test
 ## API
 > For more use-cases see the [tests](./test.js)
 
-### [.parseGithubShortUrl](parse-github-short-url/index.js#L39)
+### [.parseGithubShortUrl](./index.js#L38)
 > Parse github short url to object
 
 * `<str>` **{String}** string to parse for `user/repo#branch`  
