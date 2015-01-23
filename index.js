@@ -30,8 +30,8 @@ var typeOf = require('kind-of');
  * ```
  *
  * @name parseGithubShortUrl
- * @param  {String} `<str>`
- * @param  {Object} `[opts]`
+ * @param  {String} `<str>` string to parse for `user/repo#branch`
+ * @param  {Object} `[opts]` options are passed to [github-short-url-regex][github-short-url-regex]
  * @return {Object}
  * @api public
  */
