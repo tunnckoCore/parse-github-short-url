@@ -45,27 +45,23 @@ module.exports = function parseGithubShortUrl(str, opts) {
 
   opts = opts || {exact: false};
 
-  if (regex(opts).test(str)) {
-    str = regex(opts).exec(str);
+  var match = [];
 
-    return {
-      user: RegExp.$1,
-      username: RegExp.$1,
-      org: RegExp.$1,
-      organization: RegExp.$1,
-      repo: RegExp.$2,
-      repository: RegExp.$2,
-      branch: RegExp.$3
-    };
+  if (regex(opts).test(str)) {
+    match = str.match(regex(opts));
   }
 
-  return {
-    user: '',
-    username: '',
-    org: '',
-    organization: '',
-    repo: '',
-    repository: '',
-    branch: ''
-  };
+  return new ParseGithubShorthand(match);
 };
+
+function ParseGithubShorthand(match) {
+  this.user = match[1] || '';
+  this.username = match[1] || '';
+  this.org = match[1] || '';
+  this.organization = match[1] || '';
+  this.repo = match[2] || '';
+  this.repository = match[2] || '';
+  this.branch = match[3] || '';
+
+  return this;
+}
