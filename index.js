@@ -54,6 +54,11 @@ module.exports = function parseGithubShortUrl(str, opts) {
   return new ParseGithubShorthand(match);
 };
 
+module.exports.test = function test(obj) {
+  return obj && obj.user && obj.repo && obj.constructor &&
+    obj.constructor.name === 'ParseGithubShorthand'
+};
+
 function ParseGithubShorthand(match) {
   this.user = match[1] || '';
   this.username = match[1] || '';
@@ -65,3 +70,5 @@ function ParseGithubShorthand(match) {
 
   return this;
 }
+
+
