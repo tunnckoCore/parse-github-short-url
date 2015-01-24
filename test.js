@@ -36,8 +36,7 @@ describe('parse-github-short-url:', function() {
 
   describe('should return object with empty fields for missing properties', function(done) {
     it('when string not contain possible pattern', function(done) {
-      var actual = parseUrl('some string');
-      var fixture = {
+      var expected = {
         user: '',
         username: '',
         org: '',
@@ -46,13 +45,14 @@ describe('parse-github-short-url:', function() {
         repository: '',
         branch: ''
       };
-      assert.deepEqual(fixture, actual);
+      var actual = parseUrl('some string');
+
+      assert.deepEqual(actual, expected);
       done();
     });
 
     it('when string not a valid `user/repo` pattern', function(done) {
-      var actual = parseUrl('some tunnckoCore!glob2fp#feature string');
-      var fixture = {
+      var expected = {
         user: '',
         username: '',
         org: '',
@@ -61,14 +61,16 @@ describe('parse-github-short-url:', function() {
         repository: '',
         branch: ''
       };
-      assert.deepEqual(fixture, actual);
+      var actual = parseUrl('some tunnckoCore!glob2fp#feature string');
+
+      assert.deepEqual(actual, expected);
       done();
     });
   });
 
-  describe('should return', function() {
-    it('object with `user`, `repo` and `branch`', function(done) {
-      var actual = {
+  describe('should work', function() {
+    it('should return object with `user`, `repo` and `branch`', function(done) {
+      var expected = {
         user: 'tunnckoCore',
         username: 'tunnckoCore',
         org: 'tunnckoCore',
@@ -77,14 +79,14 @@ describe('parse-github-short-url:', function() {
         repository: 'glob2fp',
         branch: 'feature'
       };
-      var fixture = 'tunnckoCore/glob2fp#feature';
+      var actual = parseUrl('tunnckoCore/glob2fp#feature');
 
-      assert.deepEqual(parseUrl(fixture), actual);
+      assert.deepEqual(actual, expected);
       done()
     });
 
-    it('object with `user` and `repo` properties only', function(done) {
-      var actual = {
+    it('should return object with `user` and `repo` properties only', function(done) {
+      var expected = {
         user: 'tunnckoCore',
         username: 'tunnckoCore',
         org: 'tunnckoCore',
@@ -93,9 +95,46 @@ describe('parse-github-short-url:', function() {
         repository: 'glob2fp',
         branch: ''
       };
-      var fixture = 'tunnckoCore/glob2fp';
+      var actual = parseUrl('tunnckoCore/glob2fp');
 
-      assert.deepEqual(parseUrl(fixture), actual);
+      assert.deepEqual(actual, expected);
+      done();
+    });
+
+    it('should returned be object and have .constructor.name', function(done) {
+      var expected = {
+        user: 'tunnckoCore',
+        username: 'tunnckoCore',
+        org: 'tunnckoCore',
+        organization: 'tunnckoCore',
+        repo: 'glob2fp',
+        repository: 'glob2fp',
+        branch: 'feature'
+      };
+      var actual = parseUrl('tunnckoCore/glob2fp#feature');
+
+      assert.deepEqual(actual, expected);
+      assert.strictEqual(typeof actual, 'object');
+      assert(actual.constructor);
+      assert(actual.constructor.name);
+      done()
+    });
+
+    it('should .constructor.name be `ParseGithubShorthand`', function(done) {
+      var expected = {
+        user: 'tunnckoCore',
+        username: 'tunnckoCore',
+        org: 'tunnckoCore',
+        organization: 'tunnckoCore',
+        repo: 'homepage',
+        repository: 'homepage',
+        branch: 'bigfix'
+      };
+      var actual = parseUrl('tunnckoCore/homepage#bigfix');
+
+      assert.deepEqual(actual, expected);
+      assert.strictEqual(typeof actual, 'object');
+      assert.strictEqual(actual.constructor.name, 'ParseGithubShorthand');
       done();
     });
   });
