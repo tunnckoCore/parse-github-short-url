@@ -108,6 +108,39 @@ module.exports.test = function test(obj) {
     obj.constructor.name === 'ParseGithubShorthand' ? true : false
 };
 
+/**
+ * Validates if given object is like what we want - object with
+ * at least `.user` and `.repo` properties
+ *
+ * **Example:**
+ *
+ * ```js
+ * var shorthandGithub = require('parse-github-short-url');
+ * var res = shorthandGithub('tunnckoCore/glob2fp#master');
+ * var obj = {
+ *   user: 'tunnckoCore',
+ *   username: 'tunnckoCore',
+ *   org: 'tunnckoCore',
+ *   organization: 'tunnckoCore',
+ *   repo: 'glob2fp',
+ *   repository: 'glob2fp',
+ *   branch: 'master'
+ * };
+ *
+ * shorthandGithub.validate(obj);
+ * //=> true
+ *
+ * shorthandGithub.validate(res);
+ * //=> true
+ *
+ * assert.deepEqual(obj, res);
+ * //=> its okey
+ * ```
+ *
+ * @param  {Object} `[obj]` object to validate
+ * @return {Boolean}
+ * @api public
+ */
 module.exports.validate = function validate(obj) {
   if (obj && obj.user && obj.repo) {
     if (typeof obj.user !== 'string' || typeof obj.repo !== 'string') {

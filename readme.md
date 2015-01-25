@@ -44,7 +44,7 @@ parseGithubShortUrl('tunnckoCore/glob2fp#master');
 ### [.test](./index.js#L106)
 > Checks given object is valid `ParseGithubShorthand` object, e.g. have `.user`, `.repo` and etc properties
 
-- `[obj]` **{Object}**  object to check  
+- `[obj]` **{Object}** object to check  
 - `returns` **{Boolean}** boolean `true` or `false`  
 
 **Example:**
@@ -86,6 +86,35 @@ var notValid = {
 
 shorthandGithub.test(notValid);
 //=> false
+```
+
+### [.validate](./index.js#L106)
+> Validates if given object is like what we want - object with
+at least `.user` and `.repo` properties
+
+- `[obj]` **{Object}** object to validate  
+- `returns` **{Boolean}** boolean `true` or `false`  
+
+**Example:**
+
+```js
+var shorthandGithub = require('parse-github-short-url');
+var res = shorthandGithub('tunnckoCore/glob2fp#master');
+var obj = {
+  user: 'tunnckoCore',
+  username: 'tunnckoCore',
+  org: 'tunnckoCore',
+  organization: 'tunnckoCore',
+  repo: 'glob2fp',
+  repository: 'glob2fp',
+  branch: 'master'
+};
+
+shorthandGithub.validate(obj);
+//=> true
+
+assert.deepEqual(obj, res)
+//=> its okey
 ```
 
 
