@@ -1,6 +1,18 @@
 
 
+## v1.0.3 / January 25, 2015
+- Release v1.0.3 / npm@v1.0.3
+- update tests
+- add more tests
+- fix lint errors
+- add tests for `.validate` method
+- update `.test`, update docs
+- add docs for `.validate` method
+- add docs for `.validate` method
+- add `.validate` method
+
 ## v1.0.2 / January 25, 2015
+- Release v1.0.2 / npm@v1.0.2
 - update docs
 - update tests, update `.test` method
 - update docs
@@ -12,7 +24,7 @@
 - return class instead of just object
 
 ## v1.0.1 / January 23, 2015
-- Release v1.0.1
+- Release v1.0.1 / npm@v1.0.1
 - remove `kind-of`
 
 ## v1.0.0 / January 23, 2015
@@ -22,7 +34,7 @@
 - add test-case: throw when empty string given
 
 ## v0.1.0 / January 23, 2015
-- publish
+- Release v0.1.0 / npm@v0.1.0
 
 ## v0.0.0 / January 22, 2015
 - first commits
