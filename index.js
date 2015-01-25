@@ -10,6 +10,13 @@
 var regex = require('github-short-url-regex');
 
 /**
+ * Expose `parseGithubShortUrl`
+ */
+module.exports = parseGithubShortUrl;
+parseGithubShortUrl.test = test;
+parseGithubShortUrl.validate = validate;
+
+/**
  * Parse github short url to object
  *
  * **Example:**
@@ -34,7 +41,7 @@ var regex = require('github-short-url-regex');
  * @return {Object}
  * @api public
  */
-module.exports = function parseGithubShortUrl(str, opts) {
+function parseGithubShortUrl(str, opts) {
   if (!str) {
     throw new Error('parse-github-short-url: should have at least 1 arguments');
   }
@@ -99,13 +106,16 @@ module.exports = function parseGithubShortUrl(str, opts) {
  * //=> false
  * ```
  *
+ * @name test
  * @param  {Object} `obj` object to check
  * @return {Boolean} return boolean `true` or `false`
  * @api public
  */
-module.exports.test = function test(obj) {
-  return obj && obj.user && obj.repo && obj.constructor &&
-    obj.constructor.name === 'ParseGithubShorthand' ? true : false
+function test(obj) {
+  if (validate(obj) && obj.constructor) {
+    return obj.constructor.name === 'ParseGithubShorthand' ? true : false;
+  }
+  return false;
 };
 
 /**
@@ -137,18 +147,18 @@ module.exports.test = function test(obj) {
  * //=> its okey
  * ```
  *
+ * @name validate
  * @param  {Object} `[obj]` object to validate
  * @return {Boolean}
  * @api public
  */
-module.exports.validate = function validate(obj) {
+function validate(obj) {
   if (obj && obj.user && obj.repo) {
     if (typeof obj.user !== 'string' || typeof obj.repo !== 'string') {
       return false;
     }
     return true;
   }
-
   return false;
 };
 

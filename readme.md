@@ -18,7 +18,7 @@ npm test
 ## API
 > For more use-cases see the [tests](./test.js)
 
-### [parseGithubShortUrl](./index.js#L37)
+### [parseGithubShortUrl](./index.js#L44)
 > Parse github short url to object
 
 - `<str>` **{String}** string to parse for `user/repo#branch`  
@@ -41,7 +41,7 @@ parseGithubShortUrl('tunnckoCore/glob2fp#master');
 //};
 ```
 
-### [.test](./index.js#L106)
+### [.test](./index.js#L114)
 > Checks given object is valid `ParseGithubShorthand` object, e.g. have `.user`, `.repo` and etc properties
 
 - `[obj]` **{Object}** object to check  
@@ -88,7 +88,7 @@ shorthandGithub.test(notValid);
 //=> false
 ```
 
-### [.validate](./index.js#L144)
+### [.validate](./index.js#L155)
 > Validates if given object is like what we want - object with
 at least `.user` and `.repo` properties
 
