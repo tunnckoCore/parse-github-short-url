@@ -11,6 +11,8 @@ npm test
 ## Related
 - [github-short-url-regex][github-short-url-regex]
 - [parse-github-short-urls][parse-github-short-urls]
+- [stringify-github-short-url][stringify-github-short-url]
+- [stringify-github-short-urls][stringify-github-short-urls]
 
 
 ## API
@@ -112,3 +114,5 @@ _Powered and automated by [kdf](https://github.com/tunnckoCore), January 22, 201
 [github-short-url-regex]: https://github.com/regexps/github-short-url-regex
 [parse-github-short-url]: https://github.com/tunnckoCore/parse-github-short-url
 [parse-github-short-urls]: https://github.com/tunnckoCore/parse-github-short-urls
+[stringify-github-short-url]: https://github.com/tunnckoCore/stringify-github-short-url
+[stringify-github-short-urls]: https://github.com/tunnckoCore/stringify-github-short-urls
