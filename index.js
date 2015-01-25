@@ -73,11 +73,17 @@ module.exports = function parseGithubShortUrl(str, opts) {
  * //  branch: 'master'
  * //};
  *
- * if (shorthandGithub.test(res)) {
- *   console.log(res);
- * } else {
- *   console.log('object', res, 'is not valid')
+ *
+ * shorthandGithub.test(res);
+ * //=> true
+ *
+ * var obj = {
+ *   username: 'visionmedia',
+ *   exact: true
  * }
+ *
+ * shorthandGithub.test(obj);
+ * //=> false
  * ```
  *
  * @param  {Object} `obj` object to check
