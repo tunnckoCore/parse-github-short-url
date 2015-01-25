@@ -88,7 +88,7 @@ shorthandGithub.test(notValid);
 //=> false
 ```
 
-### [.validate](./index.js#L106)
+### [.validate](./index.js#L144)
 > Validates if given object is like what we want - object with
 at least `.user` and `.repo` properties
 
@@ -111,6 +111,9 @@ var obj = {
 };
 
 shorthandGithub.validate(obj);
+//=> true
+
+shorthandGithub.validate(res);
 //=> true
 
 assert.deepEqual(obj, res)
