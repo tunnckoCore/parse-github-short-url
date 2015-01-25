@@ -91,8 +91,9 @@ module.exports = function parseGithubShortUrl(str, opts) {
  * @api public
  */
 module.exports.test = function test(obj) {
-  return obj && obj.user && obj.repo && obj.constructor &&
-    obj.constructor.name === 'ParseGithubShorthand'
+  return (obj && obj.user && obj.repo &&
+    obj.constructor && obj.constructor.name === 'ParseGithubShorthand')
+    ? true : false
 };
 
 function ParseGithubShorthand(match) {

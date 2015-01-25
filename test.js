@@ -68,7 +68,7 @@ describe('parse-github-short-url:', function() {
     });
   });
 
-  describe('should work', function() {
+  describe('should work and', function() {
     it('should return object with `user`, `repo` and `branch`', function(done) {
       var expected = {
         user: 'tunnckoCore',
@@ -137,48 +137,54 @@ describe('parse-github-short-url:', function() {
       assert.strictEqual(actual.constructor.name, 'ParseGithubShorthand');
       done();
     });
+
+    it('should have static method .test', function(done) {
+      var expected = {
+        user: 'jadejs',
+        username: 'jadejs',
+        org: 'jadejs',
+        organization: 'jadejs',
+        repo: 'doctypes',
+        repository: 'doctypes',
+        branch: 'refactor'
+      };
+      var actual = parseUrl('jadejs/doctypes#refactor');
+
+      assert.deepEqual(actual, expected);
+      assert.strictEqual(typeof actual, 'object');
+      assert.strictEqual(typeof parseUrl.test, 'function');
+      assert.strictEqual(parseUrl.test(actual), true);
+      done();
+    });
   });
 
-  it('should have static method .test', function(done) {
-    var expected = {
-      user: 'jadejs',
-      username: 'jadejs',
-      org: 'jadejs',
-      organization: 'jadejs',
-      repo: 'doctypes',
-      repository: 'doctypes',
-      branch: 'refactor'
-    };
-    var actual = parseUrl('jadejs/doctypes#refactor');
+  describe('`.test` method', function() {
+    it('should return `true` if given is valid `ParseGithubShorthand` object', function(done) {
+      var expected = {
+        user: 'visionmedia',
+        username: 'visionmedia',
+        org: 'visionmedia',
+        organization: 'visionmedia',
+        repo: 'expressjs',
+        repository: 'expressjs',
+        branch: 'wantfix'
+      };
+      var actual = parseUrl('visionmedia/expressjs#wantfix');
 
-    assert.deepEqual(actual, expected);
-    assert.strictEqual(typeof actual, 'object');
-    assert.strictEqual(typeof parseUrl.test, 'function');
-    assert.strictEqual(parseUrl.test(actual), true);
-    done();
-  });
+      assert.deepEqual(actual, expected);
+      assert.strictEqual(parseUrl.test(actual), true);
+      done();
+    });
 
-  it('should validate returned object with .test method', function(done) {
-    var expected = {
-      user: 'visionmedia',
-      username: 'visionmedia',
-      org: 'visionmedia',
-      organization: 'visionmedia',
-      repo: 'expressjs',
-      repository: 'expressjs',
-      branch: 'wantfix'
-    };
-    var actual = parseUrl('visionmedia/expressjs#wantfix');
 
-    assert(actual.constructor);
-    assert.deepEqual(actual, expected);
-    assert.strictEqual(typeof actual, 'object');
-    assert.strictEqual(typeof parseUrl.test, 'function');
-    assert.strictEqual(parseUrl.test(actual), true);
-    assert.strictEqual(actual.constructor.name, 'ParseGithubShorthand');
-    assert.strictEqual(actual.user, expected.user);
-    assert.strictEqual(actual.repo, expected.repo);
-    assert.strictEqual(actual.branch, expected.branch);
-    done();
+    it('should return `false` if given is not valid object', function(done) {
+      var fixture = {
+        username: 'tunnckoCore',
+        repo: 'glob2fp'
+      };
+
+      assert.strictEqual(parseUrl.test(fixture), false);
+      done();
+    });
   });
 });
