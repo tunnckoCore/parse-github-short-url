@@ -156,10 +156,31 @@ describe('parse-github-short-url:', function() {
       assert.strictEqual(parseUrl.test(actual), true);
       done();
     });
+
+    it('should have static method .validate', function(done) {
+      var expected = {
+        user: 'shouldjs',
+        username: 'shouldjs',
+        org: 'shouldjs',
+        organization: 'shouldjs',
+        repo: 'format',
+        repository: 'format',
+        branch: 'refactor'
+      };
+      var actual = parseUrl('shouldjs/format#refactor');
+
+      assert.deepEqual(actual, expected);
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(typeof parseUrl.test, 'function');
+      assert.strictEqual(parseUrl.test(actual), true);
+      assert.strictEqual(parseUrl.validate(expected), true);
+      assert.strictEqual(parseUrl.validate(actual), true);
+      done();
+    });
   });
 
-  describe('`.test` method', function() {
-    it('should return `true` if given is valid `ParseGithubShorthand` object', function(done) {
+  describe('should `.test` method return', function() {
+    it('`true` if given is valid `ParseGithubShorthand` object', function(done) {
       var expected = {
         user: 'visionmedia',
         username: 'visionmedia',
@@ -177,13 +198,45 @@ describe('parse-github-short-url:', function() {
     });
 
 
-    it('should return `false` if given is not valid object', function(done) {
+    it('`false` if given is not valid object', function(done) {
       var fixture = {
         username: 'tunnckoCore',
         repo: 'glob2fp'
       };
 
       assert.strictEqual(parseUrl.test(fixture), false);
+      done();
+    });
+  });
+
+  describe('should `.validate` method return', function() {
+    it('`true` if given object have at least `.user` and `.repo` properties', function(done) {
+      var fixture = {
+        user: 'visionmedia',
+        username: 'visionmedia',
+        org: 'visionmedia',
+        organization: 'visionmedia',
+        repo: 'expressjs',
+        repository: 'expressjs',
+        branch: 'wantfix'
+      };
+      var expected = true;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), expected);
+      done();
+    });
+
+
+    it('`false` if otherwise', function(done) {
+      var fixture = {
+        beta: 'tunnckoCore',
+        user: 'glob2fp'
+      };
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), false);
       done();
     });
   });
