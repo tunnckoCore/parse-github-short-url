@@ -193,10 +193,10 @@ describe('parse-github-short-url:', function() {
       var actual = parseUrl('visionmedia/expressjs#wantfix');
 
       assert.deepEqual(actual, expected);
+      assert.strictEqual(typeof parseUrl.test, 'function');
       assert.strictEqual(parseUrl.test(actual), true);
       done();
     });
-
 
     it('`false` if given is not valid object', function(done) {
       var fixture = {
@@ -204,7 +204,17 @@ describe('parse-github-short-url:', function() {
         repo: 'glob2fp'
       };
 
+      assert.strictEqual(typeof parseUrl.test, 'function');
       assert.strictEqual(parseUrl.test(fixture), false);
+      done();
+    });
+
+    it('`false` no arguments given', function(done) {
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.test, 'function');
+      assert.strictEqual(parseUrl.test(), false);
+      assert.strictEqual(parseUrl.test(undefined), false);
       done();
     });
   });
@@ -237,6 +247,39 @@ describe('parse-github-short-url:', function() {
 
       assert.strictEqual(typeof parseUrl.validate, 'function');
       assert.strictEqual(parseUrl.validate(fixture), false);
+      done();
+    });
+
+    it('`false` if `.user` property is not string', function(done) {
+      var fixture = {
+        user: false,
+        repo: 'repo'
+      };
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), false);
+      done();
+    });
+
+    it('`false` if `.repo` property is not string', function(done) {
+      var fixture = {
+        user: 'tunnckoCore',
+        repo: false
+      };
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), false);
+      done();
+    });
+
+    it('`false` no arguments given', function(done) {
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(), false);
+      assert.strictEqual(parseUrl.validate(undefined), false);
       done();
     });
   });
