@@ -18,7 +18,7 @@ npm test
 ## API
 > For more use-cases see the [tests](./test.js)
 
-### [parseGithubShortUrl](./index.js#L44)
+### [parseGithubShortUrl](./index.js#L45)
 > Parse github short url to object
 
 - `<str>` **{String}** string to parse for `user/repo#branch`  
@@ -41,7 +41,7 @@ parseGithubShortUrl('tunnckoCore/glob2fp#master');
 //};
 ```
 
-### [.test](./index.js#L114)
+### [.test](./index.js#L115)
 > Checks given object is valid `ParseGithubShorthand` object, e.g. have `.user`, `.repo` and etc properties
 
 - `[obj]` **{Object}** object to check  
@@ -88,7 +88,7 @@ shorthandGithub.test(notValid);
 //=> false
 ```
 
-### [.validate](./index.js#L155)
+### [.validate](./index.js#L156)
 > Validates if given object is like what we want - object with
 at least `.user` and `.repo` properties
 
@@ -118,6 +118,24 @@ shorthandGithub.validate(res);
 
 assert.deepEqual(obj, res)
 //=> its okey
+```
+
+### [.regex](./index.js#L173)
+> Return `github-short-url-regex` regex with given options
+
+- `[opts]` **{Object}**  options pass to [github-short-url-regex][github-short-url-regex]  
+- `returns` **{RegExp}**
+
+**Example:**
+
+```js
+var shorthandGithub = require('parse-github-short-url');
+
+shorthandGithub.regex(opts).test('here tunnckoCore/npmls#feature pattern')
+//=> true
+
+shorthandGithub.regex(opts).test('here string')
+//=> false
 ```
 
 

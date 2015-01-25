@@ -164,10 +164,11 @@ function validate(obj) {
 }
 
 /**
- * Expose `github-short-url-regex`
+ * Return `github-short-url-regex` regex with given options
  *
  * @param  {Object} `[opts]` options pass to [github-short-url-regex][github-short-url-regex]
  * @return {RegExp}
+ * @api public
  */
 function regex(opts) {
   return re(opts);
