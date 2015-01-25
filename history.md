@@ -1,5 +1,10 @@
 
 
+## v1.0.4 / January 25, 2015
+- Release v1.0.4 / npm@v1.0.4
+- update docs
+- expose regex, add `.regex` method
+
 ## v1.0.3 / January 25, 2015
 - Release v1.0.3 / npm@v1.0.3
 - update tests

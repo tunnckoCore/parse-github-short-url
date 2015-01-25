@@ -171,10 +171,18 @@ describe('parse-github-short-url:', function() {
 
       assert.deepEqual(actual, expected);
       assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test(actual), true);
       assert.strictEqual(parseUrl.validate(expected), true);
       assert.strictEqual(parseUrl.validate(actual), true);
+      done();
+    });
+
+    it('should have static method .regex', function(done) {
+      var expected = true;
+      var fixture = 'shouldjs/format#refactor';
+
+      assert.strictEqual(typeof parseUrl.regex, 'function');
+      assert.deepEqual(parseUrl.regex().test(fixture), expected);
+      assert.deepEqual(parseUrl.regex().test('some string'), false);
       done();
     });
   });
