@@ -108,6 +108,17 @@ module.exports.test = function test(obj) {
     obj.constructor.name === 'ParseGithubShorthand' ? true : false
 };
 
+module.exports.validate = function validate(obj) {
+  if (obj && obj.user && obj.repo) {
+    if (typeof obj.user !== 'string' || typeof obj.repo !== 'string') {
+      return false;
+    }
+    return true;
+  }
+
+  return false;
+};
+
 function ParseGithubShorthand(match) {
   this.user = match[1] || '';
   this.username = match[1] || '';
