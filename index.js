@@ -59,7 +59,7 @@ function parseGithubShortUrl(str, opts) {
   }
 
   return new ParseGithubShorthand(match);
-};
+}
 
 /**
  * Checks given object is valid `ParseGithubShorthand`
@@ -116,7 +116,7 @@ function test(obj) {
     return obj.constructor.name === 'ParseGithubShorthand' ? true : false;
   }
   return false;
-};
+}
 
 /**
  * Validates if given object is like what we want - object with
@@ -160,7 +160,7 @@ function validate(obj) {
     return true;
   }
   return false;
-};
+}
 
 function ParseGithubShorthand(match) {
   this.user = match[1] || '';
