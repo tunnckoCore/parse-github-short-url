@@ -16,7 +16,7 @@ npm test
 ## API
 > For more use-cases see the [tests](./test.js)
 
-### [.parseGithubShortUrl](./index.js#L38)
+### [parseGithubShortUrl](./index.js#L37)
 > Parse github short url to object
 
 - `<str>` **{String}** string to parse for `user/repo#branch`  
@@ -37,6 +37,34 @@ parseGithubShortUrl('tunnckoCore/glob2fp#master');
 //  repository: 'glob2fp',
 //  branch: 'master'
 //};
+```
+
+### [.test](./index.js#L87)
+> Checks given object is valid `ParseGithubShorthand` object, e.g. have `.user`, `.repo` and etc properties
+
+- `[obj]` **{Object}**  object to check  
+- `returns` **{Object}** boolean `true` or `false`  
+
+**Example:**
+
+```js
+var shorthandGithub = require('parse-github-short-url');
+var res = shorthandGithub('tunnckoCore/glob2fp#master');
+//=> res === {
+//  user: 'tunnckoCore',
+//  username: 'tunnckoCore',
+//  org: 'tunnckoCore',
+//  organization: 'tunnckoCore',
+//  repo: 'glob2fp',
+//  repository: 'glob2fp',
+//  branch: 'master'
+//};
+
+if (shorthandGithub.test(res)) {
+  console.log(res);
+} else {
+  console.log('object', res, 'is not valid')
+}
 ```
 
 

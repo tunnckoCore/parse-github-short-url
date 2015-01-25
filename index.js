@@ -54,6 +54,36 @@ module.exports = function parseGithubShortUrl(str, opts) {
   return new ParseGithubShorthand(match);
 };
 
+/**
+ * Checks given object is valid `ParseGithubShorthand`
+ * object, e.g. have `.user`, `.repo` and etc properties
+ *
+ * **Example:**
+ *
+ * ```js
+ * var shorthandGithub = require('parse-github-short-url');
+ * var res = shorthandGithub('tunnckoCore/glob2fp#master');
+ * //=> res === {
+ * //  user: 'tunnckoCore',
+ * //  username: 'tunnckoCore',
+ * //  org: 'tunnckoCore',
+ * //  organization: 'tunnckoCore',
+ * //  repo: 'glob2fp',
+ * //  repository: 'glob2fp',
+ * //  branch: 'master'
+ * //};
+ *
+ * if (shorthandGithub.test(res)) {
+ *   console.log(res);
+ * } else {
+ *   console.log('object', res, 'is not valid')
+ * }
+ * ```
+ *
+ * @param  {Object} `obj` object to check
+ * @return {Boolean} return boolean `true` or `false`
+ * @api public
+ */
 module.exports.test = function test(obj) {
   return obj && obj.user && obj.repo && obj.constructor &&
     obj.constructor.name === 'ParseGithubShorthand'
