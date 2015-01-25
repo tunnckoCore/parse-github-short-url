@@ -73,16 +73,29 @@ module.exports = function parseGithubShortUrl(str, opts) {
  * //  branch: 'master'
  * //};
  *
- *
  * shorthandGithub.test(res);
  * //=> true
  *
  * var obj = {
- *   username: 'visionmedia',
+ *   user: 'visionmedia',
+ *   repo: 'mocha',
  *   exact: true
  * }
  *
  * shorthandGithub.test(obj);
+ * //=> false
+ *
+ * var notValid = {
+ *   user: 'tunnckoCore',
+ *   username: 'tunnckoCore',
+ *   org: 'tunnckoCore',
+ *   organization: 'tunnckoCore',
+ *   repo: 'glob2fp',
+ *   repository: 'glob2fp',
+ *   branch: 'master'
+ * };
+ *
+ * shorthandGithub.test(notValid);
  * //=> false
  * ```
  *
@@ -91,9 +104,8 @@ module.exports = function parseGithubShortUrl(str, opts) {
  * @api public
  */
 module.exports.test = function test(obj) {
-  return (obj && obj.user && obj.repo &&
-    obj.constructor && obj.constructor.name === 'ParseGithubShorthand')
-    ? true : false
+  return obj && obj.user && obj.repo && obj.constructor &&
+    obj.constructor.name === 'ParseGithubShorthand' ? true : false
 };
 
 function ParseGithubShorthand(match) {
@@ -107,5 +119,3 @@ function ParseGithubShorthand(match) {
 
   return this;
 }
-
-

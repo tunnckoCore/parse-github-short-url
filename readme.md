@@ -41,11 +41,11 @@ parseGithubShortUrl('tunnckoCore/glob2fp#master');
 //};
 ```
 
-### [.test](./index.js#L87)
+### [.test](./index.js#L106)
 > Checks given object is valid `ParseGithubShorthand` object, e.g. have `.user`, `.repo` and etc properties
 
 - `[obj]` **{Object}**  object to check  
-- `returns` **{Object}** boolean `true` or `false`  
+- `returns` **{Boolean}** boolean `true` or `false`  
 
 **Example:**
 
@@ -66,11 +66,25 @@ shorthandGithub.test(res);
 //=> true
 
 var obj = {
-  username: 'visionmedia',
+  user: 'visionmedia',
+  repo: 'mocha',
   exact: true
 }
 
 shorthandGithub.test(obj);
+//=> false
+
+var notValid = {
+  user: 'tunnckoCore',
+  username: 'tunnckoCore',
+  org: 'tunnckoCore',
+  organization: 'tunnckoCore',
+  repo: 'glob2fp',
+  repository: 'glob2fp',
+  branch: 'master'
+};
+
+shorthandGithub.test(notValid);
 //=> false
 ```
 
@@ -114,7 +128,7 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 22, 2015_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 25, 2015_
 
 [github-short-url-regex]: https://github.com/regexps/github-short-url-regex
 [parse-github-short-url]: https://github.com/tunnckoCore/parse-github-short-url
