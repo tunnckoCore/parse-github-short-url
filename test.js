@@ -217,6 +217,15 @@ describe('parse-github-short-url:', function() {
       assert.strictEqual(parseUrl.test(undefined), false);
       done();
     });
+
+    it('`false` no object given', function(done) {
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.test, 'function');
+      assert.strictEqual(parseUrl.test('string'), false);
+      assert.strictEqual(parseUrl.test(['undefined', 'arr']), false);
+      done();
+    });
   });
 
   describe('should `.validate` method return', function() {
@@ -234,19 +243,6 @@ describe('parse-github-short-url:', function() {
 
       assert.strictEqual(typeof parseUrl.validate, 'function');
       assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-
-
-    it('`false` if otherwise', function(done) {
-      var fixture = {
-        beta: 'tunnckoCore',
-        user: 'glob2fp'
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), false);
       done();
     });
 
@@ -274,12 +270,45 @@ describe('parse-github-short-url:', function() {
       done();
     });
 
+    it('`false` if `.user` and `.repo` properties are not string', function(done) {
+      var fixture = {
+        user: function() {},
+        repo: function() {}
+      };
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), false);
+      done();
+    });
+
     it('`false` no arguments given', function(done) {
       var expected = false;
 
       assert.strictEqual(typeof parseUrl.validate, 'function');
       assert.strictEqual(parseUrl.validate(), false);
       assert.strictEqual(parseUrl.validate(undefined), false);
+      done();
+    });
+
+    it('`false` no object given', function(done) {
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate('string'), false);
+      assert.strictEqual(parseUrl.validate(['undefined', 'arr']), false);
+      done();
+    });
+
+    it('`false` if object without wanted properties given', function(done) {
+      var fixture = {
+        beta: 'tunnckoCore',
+        test: 'glob2fp'
+      };
+      var expected = false;
+
+      assert.strictEqual(typeof parseUrl.validate, 'function');
+      assert.strictEqual(parseUrl.validate(fixture), false);
       done();
     });
   });
