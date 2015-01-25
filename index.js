@@ -7,7 +7,7 @@
 
 'use strict';
 
-var regex = require('github-short-url-regex');
+var re = require('github-short-url-regex');
 
 /**
  * Expose `parseGithubShortUrl`
@@ -15,6 +15,7 @@ var regex = require('github-short-url-regex');
 module.exports = parseGithubShortUrl;
 parseGithubShortUrl.test = test;
 parseGithubShortUrl.validate = validate;
+parseGithubShortUrl.regex = regex;
 
 /**
  * Parse github short url to object
@@ -54,7 +55,7 @@ function parseGithubShortUrl(str, opts) {
 
   var match = [];
 
-  if (regex(opts).test(str)) {
+  if (re(opts).test(str)) {
     match = str.match(regex(opts));
   }
 
@@ -160,6 +161,16 @@ function validate(obj) {
     return true;
   }
   return false;
+}
+
+/**
+ * Expose `github-short-url-regex`
+ *
+ * @param  {Object} `[opts]` options pass to [github-short-url-regex][github-short-url-regex]
+ * @return {RegExp}
+ */
+function regex(opts) {
+  return re(opts);
 }
 
 function ParseGithubShorthand(match) {
