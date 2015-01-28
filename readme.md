@@ -4,7 +4,7 @@
 
 ## Install
 ```bash
-npm install parse-github-short-url
+npm i --save parse-github-short-url
 npm test
 ```
 
@@ -178,7 +178,7 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 25, 2015_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 28, 2015_
 
 [github-short-url-regex]: https://github.com/regexps/github-short-url-regex
 [parse-github-short-url]: https://github.com/tunnckoCore/parse-github-short-url
