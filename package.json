@@ -1,6 +1,6 @@
 {
   "name": "parse-github-short-url",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Parse a string (github shorthand url) into an object with `user`, `repo`, `branch` using the `github-short-url-regex`",
   "scripts": {
     "lint": "jshint index.js && jscs index.js --reporter inline",

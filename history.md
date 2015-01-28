@@ -1,5 +1,10 @@
 
 
+## v1.0.5 / January 28, 2015
+- Release v1.0.5 / npm@v1.0.5
+- rebuild readme
+- fix tests
+
 ## v1.0.4 / January 25, 2015
 - Release v1.0.4 / npm@v1.0.4
 - update docs
