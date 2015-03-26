@@ -3,17 +3,10 @@
 > Parse a string (github shorthand url) into an object with `user`/`username`, `repo`/`repository`, `branch` using the [github-short-url-regex][github-short-url-regex]
 
 ## Install
-```bash
+```
 npm i --save parse-github-short-url
 npm test
 ```
-
-## Related
-- [github-short-url-regex][github-short-url-regex]
-- [parse-github-short-urls][parse-github-short-urls]
-- [stringify-github-short-url][stringify-github-short-url]
-- [stringify-github-short-urls][stringify-github-short-urls]
-
 
 ## API
 > For more use-cases see the [tests](./test.js)
@@ -139,6 +132,17 @@ shorthandGithub.regex(opts).test('here string')
 ```
 
 
+## Related
+* [utils](https://github.com/jonschlinkert/utils): Fast, generic JavaScript/node.js utility functions.
+* [github-short-url-regex](https://github.com/regexps/github-short-url-regex): Regular expression (Regex) for matching github shorthand (user/repo#branch).
+* [parse-github-short-urls](https://github.com/tunnckoCore/parse-github-short-urls): Parse a string (github shorthand urls) into an array of objects
+* [stringify-github-short-url](https://github.com/tunnckoCore/stringify-github-short-url): Stringify github shorthand url object returned from `parse-github-short-url`
+* [stringify-github-short-urls](https://github.com/tunnckoCore/stringify-github-short-urls): Stringify an array or object of github shorthand url objects returned from `parse-github-short-url(s)`
+* [gitfork](https://github.com/tunnckoCore/gitfork): Fork a Github repo with node.js (programmatically) with just `user/repo` pattern or through `gitfork-cli` package for CLI usage.
+* [gitclone](https://github.com/tunnckoCore/gitclone): Clone a Github repository programmatically. Hybrid, Async and Promise API. Or `gitclone-cli` for CLI usage
+* [gitclone-cli](https://github.com/tunnckoCore/gitclone-cli): Command-line interface (cli) utility for `gitclone` - clone github repository with pattern like `user/repo#branch`.
+
+
 ## Author
 **Charlike Mike Reagent**
 + [gratipay/tunnckoCore][author-gratipay]
@@ -178,10 +182,4 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 28, 2015_
-
-[github-short-url-regex]: https://github.com/regexps/github-short-url-regex
-[parse-github-short-url]: https://github.com/tunnckoCore/parse-github-short-url
-[parse-github-short-urls]: https://github.com/tunnckoCore/parse-github-short-urls
-[stringify-github-short-url]: https://github.com/tunnckoCore/stringify-github-short-url
-[stringify-github-short-urls]: https://github.com/tunnckoCore/stringify-github-short-urls
+_Powered and automated by [kdf](https://github.com/tunnckoCore), March 26, 2015_
