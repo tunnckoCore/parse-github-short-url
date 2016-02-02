@@ -15,8 +15,66 @@ npm i parse-github-short-url --save
 > For more use-cases see the [tests](./test.js)
 
 ```js
-const parseGithubShortUrl = require('parse-github-short-url')
+var gh = require('parse-github-short-url')
+gh('tunnckoCore/parse-function')
 ```
+
+Results in:
+
+```json
+{
+  "owner": "tunnckoCore",
+  "name": "parse-function",
+  "repo": "tunnckoCore/parse-function",
+  "branch": "master"
+}
+```
+
+### More examples
+Or see the tests
+
+```js
+// assemble/verb#1.2.3
+{
+  "owner": "assemble",
+  "name": "verb",
+  "repo": "assemble/verb",
+  "branch": "1.2.3"
+}
+
+// assemble/verb#dev
+{
+  "owner": "assemble",
+  "name": "verb",
+  "repo": "assemble/verb",
+  "branch": "dev"
+}
+
+// assemble/verb
+{
+  "owner": "assemble",
+  "name": "verb",
+  "repo": "assemble/verb",
+  "branch": "master"
+}
+
+// assemble
+{
+  "owner": "assemble",
+  "name": null,
+  "repo": null,
+  "branch": "master"
+}
+
+// gulpjs/gulp@v3.8.1
+{
+  "owner": "gulpjs",
+  "name": "gulp",
+  "repo": "gulpjs/gulp",
+  "branch": "v3.8.1"
+}
+```
+
 
 
 ## Contributing

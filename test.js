@@ -23,10 +23,10 @@ test('should return null if not a string or if empty string', function (done) {
 })
 
 test('should return object with `owner` and `branch` when invalid pattern', function (done) {
-  test.strictEqual(gh('foo bar').owner, 'foo')
-  test.strictEqual(gh('foo bar').repo, null)
-  test.strictEqual(gh('foo bar').name, null)
-  test.strictEqual(gh('foo bar').branch, 'master')
+  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').owner, 'https')
+  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').repo, null)
+  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').name, null)
+  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').branch, 'master')
   done()
 })
 
