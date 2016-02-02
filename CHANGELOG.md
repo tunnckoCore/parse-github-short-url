@@ -1,5 +1,14 @@
 
 
+## 3.0.0 - 2015-02-02
+- Release v3.0.0 / npm@v3.0.0
+- still supports `npm` shorthand, e.g. `gulpjs/gulp@v3.8.1`
+- simplify, follow `parse-github-url` style
+  + `owner` - user or org
+  + `name` - name of the repo
+  + `repo` - full repo path, e.g. `gulpjs/gulp`
+  + `branch` - branch name (defaults to `master`) or npm version
+
 ## 2.0.0 - 2015-03-26
 - Release v2.0.0 / npm@v2.0.0
 - **add** `related` section
