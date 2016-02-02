@@ -76,6 +76,13 @@ Or see the tests
 ```
 
 
+## Related
+- [gitclone-cli](https://github.com/tunnckocore/gitclone-cli): Git clone github repository with pattern like `user/repo#branch`
+- [github-short-url-regex](https://github.com/regexps/github-short-url-regex): Regular expression (Regex) for matching github shorthand (user/repo#branch).
+- [parse-github-url](https://github.com/jonschlinkert/parse-github-url): Parse a github URL into an object.
+- [stringify-github-short-url](https://github.com/tunnckoCore/stringify-github-short-url): Stringify github shorthand url object returned from `parse-github-short-url`
+- [stringify-github-url](https://github.com/jonschlinkert/stringify-github-url): Generate a GitHub URL from an object.
+
 
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/tunnckoCore/parse-github-short-url/issues/new).  
