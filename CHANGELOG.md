@@ -1,21 +1,21 @@
 
 
-## v2.0.0 / March 26, 2015
+## 2.0.0 - 2015-03-26
 - Release v2.0.0 / npm@v2.0.0
 - **add** `related` section
 - **update** bump to `github-short-url-regex@v3.0.0` which **MAY** cause problems
 
-## v1.0.5 / January 28, 2015
+## 1.0.5 - 2015-01-28
 - Release v1.0.5 / npm@v1.0.5
 - **update** rebuild readme
 - **fix** tests
 
-## v1.0.4 / January 25, 2015
+## 1.0.4 - 2015-01-25
 - Release v1.0.4 / npm@v1.0.4
 - **update** docs
 - expose regex, add `.regex` method
 
-## v1.0.3 / January 25, 2015
+## 1.0.3 - 2015-01-25
 - Release v1.0.3 / npm@v1.0.3
 - **update** tests
 - **add** more tests
@@ -26,7 +26,7 @@
 - **add** docs for `.validate` method
 - **add** `.validate` method
 
-## v1.0.2 / January 25, 2015
+## 1.0.2 - 2015-01-25
 - Release v1.0.2 / npm@v1.0.2
 - **update** docs
 - **update** tests, update `.test` method
@@ -38,18 +38,18 @@
 - **add** tests for returning class
 - return class instead of just object
 
-## v1.0.1 / January 23, 2015
+## 1.0.1 - 2015-01-23
 - Release v1.0.1 / npm@v1.0.1
 - remove `kind-of`
 
-## v1.0.0 / January 23, 2015
+## 1.0.0 - 2015-01-23
 - Release v1.0.0
 - **add** related projects
 - **add** docs
 - **add** test-case: throw when empty string given
 
-## v0.1.0 / January 23, 2015
+## 0.1.0 - 2015-01-23
 - Release v0.1.0 / npm@v0.1.0
 
-## v0.0.0 / January 22, 2015
+## 0.0.0 - 2015-01-22
 - first commits

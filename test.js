@@ -1,325 +1,75 @@
-/**
+/*!
  * parse-github-short-url <https://github.com/tunnckoCore/parse-github-short-url>
  *
- * Copyright (c) 2015 Charlike Mike Reagent, contributors.
+ * Copyright (c) 2015-2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.
  */
 
-'use strict';
+/* jshint asi:true */
 
-var assert = require('assert');
-var parseUrl = require('./index');
+'use strict'
 
-describe('parse-github-short-url:', function() {
-  describe('should throw', function() {
-    it('Error when no arguments', function(done) {
-      assert.throws(parseUrl, Error);
-      done()
-    });
+var test = require('assertit')
+var gh = require('./index')
 
-    it('Error when empty string given', function(done) {
-      function fixture() {
-        parseUrl('')
-      }
-      assert.throws(fixture, Error);
-      done();
-    });
+test('should return null if not a string or if empty string', function (done) {
+  test.strictEqual(gh(''), null)
+  test.strictEqual(gh(), null)
+  test.strictEqual(gh(null), null)
+  test.strictEqual(gh(undefined), null)
+  test.strictEqual(gh(123), null)
+  test.strictEqual(gh([1, 2, 3]), null)
+  done()
+})
 
-    it('TypeError when first argument not String given', function(done) {
-      function fixture() {
-        parseUrl({})
-      }
-      assert.throws(fixture, TypeError);
-      done();
-    });
-  });
+test('should return object with `owner` and `branch` when invalid pattern', function (done) {
+  test.strictEqual(gh('foo bar').owner, 'foo')
+  test.strictEqual(gh('foo bar').repo, null)
+  test.strictEqual(gh('foo bar').name, null)
+  test.strictEqual(gh('foo bar').branch, 'master')
+  done()
+})
 
-  describe('should return object with empty fields for missing properties', function(done) {
-    it('when string not contain possible pattern', function(done) {
-      var expected = {
-        user: '',
-        username: '',
-        org: '',
-        organization: '',
-        repo: '',
-        repository: '',
-        branch: ''
-      };
-      var actual = parseUrl('some string');
+test('should get user', function (done) {
+  test.strictEqual(gh('assemble/verb#branch').owner, 'assemble')
+  test.strictEqual(gh('assemble/verb#dev').owner, 'assemble')
+  test.strictEqual(gh('assemble/verb').owner, 'assemble')
+  test.strictEqual(gh('assemble').owner, 'assemble')
+  done()
+})
 
-      assert.deepEqual(actual, expected);
-      done();
-    });
+test('should work for npm shorthands like `user/repo@version`', function (done) {
+  test.strictEqual(gh('assemble/verb@v1').branch, 'v1')
+  test.strictEqual(gh('assemble/verb@v3.1.3').branch, 'v3.1.3')
+  done()
+})
 
-    it('when string not a valid `user/repo` pattern', function(done) {
-      var expected = {
-        user: '',
-        username: '',
-        org: '',
-        organization: '',
-        repo: '',
-        repository: '',
-        branch: ''
-      };
-      var actual = parseUrl('some tunnckoCore!glob2fp#feature string');
+test('should get repo name (.name)', function (done) {
+  test.strictEqual(gh('assemble/verb#branch').name, 'verb')
+  test.strictEqual(gh('assemble/verb#dev').name, 'verb')
+  test.strictEqual(gh('assemble/verb').name, 'verb')
+  test.strictEqual(gh('assemble').name, null)
+  done()
+})
 
-      assert.deepEqual(actual, expected);
-      done();
-    });
-  });
+test('should get branch (and get master branch if not defined)', function (done) {
+  test.strictEqual(gh('gulpjs/gulp#branch').branch, 'branch')
+  test.strictEqual(gh('gulpjs/gulp#dev').branch, 'dev')
+  test.strictEqual(gh('gulpjs/gulp').branch, 'master')
+  test.strictEqual(gh('gulpjs').branch, 'master')
+  done()
+})
 
-  describe('should work and', function() {
-    it('should return object with `user`, `repo` and `branch`', function(done) {
-      var expected = {
-        user: 'tunnckoCore',
-        username: 'tunnckoCore',
-        org: 'tunnckoCore',
-        organization: 'tunnckoCore',
-        repo: 'glob2fp',
-        repository: 'glob2fp',
-        branch: 'feature'
-      };
-      var actual = parseUrl('tunnckoCore/glob2fp#feature');
+test('should get a full repo path', function (done) {
+  test.strictEqual(gh('mochajs/mocha#branch').repo, 'mochajs/mocha')
+  test.strictEqual(gh('mochajs/mocha#dev').repo, 'mochajs/mocha')
+  test.strictEqual(gh('mochajs/mocha').repo, 'mochajs/mocha')
+  done()
+})
 
-      assert.deepEqual(actual, expected);
-      done()
-    });
-
-    it('should return object with `user` and `repo` properties only', function(done) {
-      var expected = {
-        user: 'tunnckoCore',
-        username: 'tunnckoCore',
-        org: 'tunnckoCore',
-        organization: 'tunnckoCore',
-        repo: 'glob2fp',
-        repository: 'glob2fp',
-        branch: ''
-      };
-      var actual = parseUrl('tunnckoCore/glob2fp');
-
-      assert.deepEqual(actual, expected);
-      done();
-    });
-
-    it('should returned be object and have .constructor.name', function(done) {
-      var expected = {
-        user: 'tunnckoCore',
-        username: 'tunnckoCore',
-        org: 'tunnckoCore',
-        organization: 'tunnckoCore',
-        repo: 'glob2fp',
-        repository: 'glob2fp',
-        branch: 'feature'
-      };
-      var actual = parseUrl('tunnckoCore/glob2fp#feature');
-
-      assert.deepEqual(actual, expected);
-      assert.strictEqual(typeof actual, 'object');
-      assert(actual.constructor);
-      assert(actual.constructor.name);
-      done()
-    });
-
-    it('should .constructor.name be `ParseGithubShorthand`', function(done) {
-      var expected = {
-        user: 'tunnckoCore',
-        username: 'tunnckoCore',
-        org: 'tunnckoCore',
-        organization: 'tunnckoCore',
-        repo: 'homepage',
-        repository: 'homepage',
-        branch: 'bigfix'
-      };
-      var actual = parseUrl('tunnckoCore/homepage#bigfix');
-
-      assert.deepEqual(actual, expected);
-      assert.strictEqual(typeof actual, 'object');
-      assert.strictEqual(actual.constructor.name, 'ParseGithubShorthand');
-      done();
-    });
-
-    it('should have static method .test', function(done) {
-      var expected = {
-        user: 'jadejs',
-        username: 'jadejs',
-        org: 'jadejs',
-        organization: 'jadejs',
-        repo: 'doctypes',
-        repository: 'doctypes',
-        branch: 'refactor'
-      };
-      var actual = parseUrl('jadejs/doctypes#refactor');
-
-      assert.deepEqual(actual, expected);
-      assert.strictEqual(typeof actual, 'object');
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test(actual), true);
-      done();
-    });
-
-    it('should have static method .validate', function(done) {
-      var expected = {
-        user: 'shouldjs',
-        username: 'shouldjs',
-        org: 'shouldjs',
-        organization: 'shouldjs',
-        repo: 'format',
-        repository: 'format',
-        branch: 'refactor'
-      };
-      var actual = parseUrl('shouldjs/format#refactor');
-
-      assert.deepEqual(actual, expected);
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(expected), true);
-      assert.strictEqual(parseUrl.validate(actual), true);
-      done();
-    });
-
-    it('should have static method .regex', function(done) {
-      var expected = true;
-      var fixture = 'shouldjs/format#refactor';
-
-      assert.strictEqual(typeof parseUrl.regex, 'function');
-      assert.deepEqual(parseUrl.regex().test(fixture), expected);
-      assert.deepEqual(parseUrl.regex().test('some string'), false);
-      done();
-    });
-  });
-
-  describe('should `.test` method return', function() {
-    it('`true` if given is valid `ParseGithubShorthand` object', function(done) {
-      var expected = {
-        user: 'visionmedia',
-        username: 'visionmedia',
-        org: 'visionmedia',
-        organization: 'visionmedia',
-        repo: 'expressjs',
-        repository: 'expressjs',
-        branch: 'wantfix'
-      };
-      var actual = parseUrl('visionmedia/expressjs#wantfix');
-
-      assert.deepEqual(actual, expected);
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test(actual), true);
-      done();
-    });
-    it('`false` if given is not valid object', function(done) {
-      var fixture = {
-        username: 'tunnckoCore',
-        repo: 'glob2fp'
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test(fixture), expected);
-      done();
-    });
-    it('`false` no arguments given', function(done) {
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test(), expected);
-      assert.strictEqual(parseUrl.test(undefined), expected);
-      done();
-    });
-    it('`false` no object given', function(done) {
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.test, 'function');
-      assert.strictEqual(parseUrl.test('string'), expected);
-      assert.strictEqual(parseUrl.test(['undefined', 'arr']), expected);
-      done();
-    });
-  });
-
-  describe('should `.validate` method return', function() {
-    it('`true` if given object have at least `.user` and `.repo` properties', function(done) {
-      var fixture = {
-        user: 'visionmedia',
-        username: 'visionmedia',
-        org: 'visionmedia',
-        organization: 'visionmedia',
-        repo: 'expressjs',
-        repository: 'expressjs',
-        branch: 'wantfix'
-      };
-      var expected = true;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-    it('`false` if `.user` property is not string', function(done) {
-      var fixture = {
-        user: false,
-        repo: 'repo'
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-    it('`false` if `.repo` property is not string', function(done) {
-      var fixture = {
-        user: 'tunnckoCore',
-        repo: false
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-    it('`false` if `.user` and `.repo` properties are not string', function(done) {
-      var fixture = {
-        user: function() {},
-        repo: function() {}
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-    it('`false` no arguments given', function(done) {
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(), expected);
-      assert.strictEqual(parseUrl.validate(undefined), expected);
-      done();
-    });
-    it('`false` no object given', function(done) {
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate('string'), expected);
-      assert.strictEqual(parseUrl.validate(['undefined', 'arr']), expected);
-      done();
-    });
-    it('`false` if object without wanted properties given', function(done) {
-      var fixture = {
-        beta: 'tunnckoCore',
-        test: 'glob2fp'
-      };
-      var expected = false;
-
-      assert.strictEqual(typeof parseUrl.validate, 'function');
-      assert.strictEqual(parseUrl.validate(fixture), expected);
-      done();
-    });
-  });
-});
-
-
-
-
-
-
-
-
-
-
+test('should know when repo is not defined', function (done) {
+  test.strictEqual(gh('assemble').name, null)
+  test.strictEqual(gh('assemble').repo, null)
+  test.strictEqual(gh('assemble').owner, 'assemble')
+  done()
+})
