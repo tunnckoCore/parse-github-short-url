@@ -26,7 +26,8 @@ Results in:
   "owner": "tunnckoCore",
   "name": "parse-function",
   "repo": "tunnckoCore/parse-function",
-  "branch": "master"
+  "branch": null,
+  "version": null
 }
 ```
 
@@ -39,7 +40,17 @@ Or see the tests
   "owner": "assemble",
   "name": "verb",
   "repo": "assemble/verb",
-  "branch": "1.2.3"
+  "branch": "1.2.3",
+  "version": null
+}
+
+// assemble/verb@~3.0.5
+{
+  "owner": "assemble",
+  "name": "verb",
+  "repo": "assemble/verb",
+  "branch": null,
+  "version": "~3.0.5"
 }
 
 // assemble/verb#dev
@@ -47,7 +58,8 @@ Or see the tests
   "owner": "assemble",
   "name": "verb",
   "repo": "assemble/verb",
-  "branch": "dev"
+  "branch": "dev",
+  "version": null
 }
 
 // assemble/verb
@@ -55,7 +67,8 @@ Or see the tests
   "owner": "assemble",
   "name": "verb",
   "repo": "assemble/verb",
-  "branch": "master"
+  "branch": null,
+  "version": null
 }
 
 // assemble
@@ -63,7 +76,8 @@ Or see the tests
   "owner": "assemble",
   "name": null,
   "repo": null,
-  "branch": "master"
+  "branch": null,
+  "version": null
 }
 
 // gulpjs/gulp@v3.8.1
@@ -71,7 +85,8 @@ Or see the tests
   "owner": "gulpjs",
   "name": "gulp",
   "repo": "gulpjs/gulp",
-  "branch": "v3.8.1"
+  "branch": null,
+  "version": "v3.8.1"
 }
 ```
 
