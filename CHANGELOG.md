@@ -1,6 +1,10 @@
 
 
-## 3.0.0 - 2015-02-02
+## 3.0.1 - 2016-04-27
+- Release v3.0.1 / npm@v3.0.1
+- a little cleanup 
+
+## 3.0.0 - 2016-02-02
 - Release v3.0.0 / npm@v3.0.0
 - still supports `npm` shorthand, e.g. `gulpjs/gulp@v3.8.1`
 - simplify, follow `parse-github-url` style
