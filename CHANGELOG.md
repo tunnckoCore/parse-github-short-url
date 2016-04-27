@@ -1,5 +1,13 @@
 
 
+## 3.1.0 - 2016-04-27
+- Release v3.1.0 / npm@v3.1.0
+- breaking: expose `version` property
+  + both defaults of `version` and `branch` are now `null`
+  + based on using `#` or `@`: 
+  + if `#` version is `null` and branch gets the value
+  + if `@` branch is `null` and version gets the value
+
 ## 3.0.1 - 2016-04-27
 - Release v3.0.1 / npm@v3.0.1
 - a little cleanup 
