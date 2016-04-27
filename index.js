@@ -10,11 +10,11 @@
 var regex = /([-_\w]*)\/*([-_.\w]*)(?:#|@)?([-_.\w]*)?/
 var cache = {}
 
-module.exports = function parseGithubShortUrl (str, opts) {
-  return cache[str] || (cache[str] = parse(str, opts))
+module.exports = function parseGithubShortUrl (str) {
+  return cache[str] || (cache[str] = parse(str))
 }
 
-function parse (val, opts) {
+function parse (val) {
   if (typeof val !== 'string' || !val.length) {
     return null
   }
