@@ -19,12 +19,21 @@ function parse (val) {
     return null
   }
   var match = regex.exec(val)
-
   var res = {}
+
   res.owner = match[1] && match[1].length && match[1] || null
   res.name = match[2] && match[2].length && match[2] || null
   res.repo = res.owner && res.name ? res.owner + '/' + res.name : null
-  res.branch = match[3] && match[3].length && match[3] || 'master'
+  res.branch = contains(val, '#') ? getLast(match) : null
+  res.version = contains(val, '@') ? getLast(match) : null
 
   return res
+}
+
+function getLast (match) {
+  return match[3] && match[3].length && match[3]
+}
+
+function contains (val, char) {
+  return val.indexOf(char) !== -1
 }

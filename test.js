@@ -26,7 +26,7 @@ test('should return object with `owner` and `branch` when invalid pattern', func
   test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').owner, 'https')
   test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').repo, null)
   test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').name, null)
-  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').branch, 'master')
+  test.strictEqual(gh('https://github.com/jonschlinkert/micromatch').branch, null)
   done()
 })
 
@@ -38,9 +38,19 @@ test('should get user', function (done) {
   done()
 })
 
-test('should work for npm shorthands like `user/repo@version`', function (done) {
-  test.strictEqual(gh('assemble/verb@v1').branch, 'v1')
-  test.strictEqual(gh('assemble/verb@v3.1.3').branch, 'v3.1.3')
+test('should get version for npm shorthands like `user/repo@version`', function (done) {
+  test.strictEqual(gh('assemble/verb@v1').branch, null)
+  test.strictEqual(gh('assemble/verb@v1').version, 'v1')
+  test.strictEqual(gh('assemble/verb@v3.1.3').branch, null)
+  test.strictEqual(gh('assemble/verb@v3.1.3').version, 'v3.1.3')
+  done()
+})
+
+test('should get branch for github shorthands like `user/repo#dev`', function (done) {
+  test.strictEqual(gh('assemble/verb#dev').branch, 'dev')
+  test.strictEqual(gh('assemble/verb#dev').version, null)
+  test.strictEqual(gh('assemble/verb#feature').branch, 'feature')
+  test.strictEqual(gh('assemble/verb#feature').version, null)
   done()
 })
 
@@ -55,8 +65,8 @@ test('should get repo name (.name)', function (done) {
 test('should get branch (and get master branch if not defined)', function (done) {
   test.strictEqual(gh('gulpjs/gulp#branch').branch, 'branch')
   test.strictEqual(gh('gulpjs/gulp#dev').branch, 'dev')
-  test.strictEqual(gh('gulpjs/gulp').branch, 'master')
-  test.strictEqual(gh('gulpjs').branch, 'master')
+  test.strictEqual(gh('gulpjs/gulp').branch, null)
+  test.strictEqual(gh('gulpjs').branch, null)
   done()
 })
 
