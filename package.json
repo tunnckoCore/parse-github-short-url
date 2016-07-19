@@ -1,6 +1,6 @@
 {
   "name": "parse-github-short-url",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "Parse a github/npm shorthand (user/repo#branch or user/repo@version) URL into an object.",
   "repository": "tunnckoCore/parse-github-short-url",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",

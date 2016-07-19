@@ -1,5 +1,9 @@
 
 
+## 3.2.0 - 2016-07-20
+- Release v3.2.0 / npm@v3.2.0
+- breaking: `.version` no more be `null` by default - it just won't exist
+
 ## 3.1.1 - 2016-07-20
 - Release v3.1.1 / npm@v3.1.1
 - allow passing more props to returned object by passing second argument
