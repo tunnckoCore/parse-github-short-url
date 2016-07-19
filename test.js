@@ -83,3 +83,11 @@ test('should know when repo is not defined', function (done) {
   test.strictEqual(gh('assemble').owner, 'assemble')
   done()
 })
+
+test('should allow passing opts that will remain in returned object', function (done) {
+  test.strictEqual(gh('foo', { bar: 'qux' }).name, null)
+  test.strictEqual(gh('foo', { bar: 'qux' }).repo, null)
+  test.strictEqual(gh('foo', { bar: 'qux' }).owner, 'foo')
+  test.strictEqual(gh('foo', { bar: 'qux' }).bar, 'qux')
+  done()
+})

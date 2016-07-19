@@ -10,16 +10,16 @@
 var regex = /([-_\w]*)\/*([-_.\w]*)(?:#|@)?([-_.\w]*)?/
 var cache = {}
 
-module.exports = function parseGithubShortUrl (str) {
-  return cache[str] || (cache[str] = parse(str))
+module.exports = function parseGithubShortUrl (str, opts) {
+  return cache[str] || (cache[str] = parse(str, opts))
 }
 
-function parse (val) {
+function parse (val, opts) {
   if (typeof val !== 'string' || !val.length) {
     return null
   }
   var match = regex.exec(val)
-  var res = {}
+  var res = typeof opts === 'object' ? opts : {}
 
   res.owner = match[1] && match[1].length && match[1] || null
   res.name = match[2] && match[2].length && match[2] || null
