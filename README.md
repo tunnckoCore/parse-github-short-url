@@ -27,7 +27,6 @@ Results in:
   "name": "parse-function",
   "repo": "tunnckoCore/parse-function",
   "branch": null,
-  "version": null
 }
 ```
 
@@ -41,7 +40,6 @@ Or see the tests
   "name": "verb",
   "repo": "assemble/verb",
   "branch": "1.2.3",
-  "version": null
 }
 
 // assemble/verb@~3.0.5
@@ -59,7 +57,6 @@ Or see the tests
   "name": "verb",
   "repo": "assemble/verb",
   "branch": "dev",
-  "version": null
 }
 
 // assemble/verb
@@ -68,7 +65,6 @@ Or see the tests
   "name": "verb",
   "repo": "assemble/verb",
   "branch": null,
-  "version": null
 }
 
 // assemble
@@ -77,7 +73,6 @@ Or see the tests
   "name": null,
   "repo": null,
   "branch": null,
-  "version": null
 }
 
 // gulpjs/gulp@v3.8.1
