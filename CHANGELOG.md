@@ -1,5 +1,9 @@
 
 
+## 3.1.1 - 2016-07-20
+- Release v3.1.1 / npm@v3.1.1
+- allow passing more props to returned object by passing second argument
+
 ## 3.1.0 - 2016-04-27
 - Release v3.1.0 / npm@v3.1.0
 - breaking: expose `version` property
