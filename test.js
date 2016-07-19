@@ -48,9 +48,9 @@ test('should get version for npm shorthands like `user/repo@version`', function 
 
 test('should get branch for github shorthands like `user/repo#dev`', function (done) {
   test.strictEqual(gh('assemble/verb#dev').branch, 'dev')
-  test.strictEqual(gh('assemble/verb#dev').version, null)
+  test.strictEqual(gh('assemble/verb#dev').version, undefined)
   test.strictEqual(gh('assemble/verb#feature').branch, 'feature')
-  test.strictEqual(gh('assemble/verb#feature').version, null)
+  test.strictEqual(gh('assemble/verb#feature').version, undefined)
   done()
 })
 

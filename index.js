@@ -25,7 +25,10 @@ function parse (val, opts) {
   res.name = match[2] && match[2].length && match[2] || null
   res.repo = res.owner && res.name ? res.owner + '/' + res.name : null
   res.branch = contains(val, '#') ? getLast(match) : null
-  res.version = contains(val, '@') ? getLast(match) : null
+
+  if (contains(val, '@')) {
+    res.version = getLast(match)
+  }
 
   return res
 }
